@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 public class Controller {
@@ -25,6 +27,12 @@ public class Controller {
 
     @GetMapping("employees")
     public List<Employee> getAllEmployees() {
+        return employeeService.readEmployees();
+    }
+
+    @GetMapping("employees/{id}")
+    public List<Employee> getEmployeeById(@PathVariable Long id) {
+        System.out.println("Yes me a raha hu ");
         return employeeService.readEmployees();
     }
 
@@ -43,10 +51,9 @@ public class Controller {
             return "Not found";
         }
     }
-}
 
-// List<Employee> employees = new ArrayList<>();
-// Employee emp = new Employee();
-// emp.setName("Shivam");
-// employees.add(emp);
-// employees.add(null);
+    @PutMapping("employees/{id}")
+    public String UpdateEmployee(@PathVariable Long id, @RequestBody String employee) {
+        return employeeService.UpdateEmployee(id, employee);
+    }
+}

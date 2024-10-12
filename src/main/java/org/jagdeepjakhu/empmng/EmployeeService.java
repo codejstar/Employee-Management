@@ -9,4 +9,8 @@ public interface EmployeeService {
 
     boolean deleteEmployee(Long id);
 
+    String UpdateEmployee(Long id, String employee);
+
+    Employee UpdateEmployee(String id);
+
 }
